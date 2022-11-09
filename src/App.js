@@ -1,8 +1,11 @@
+import Header from "./components/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
-    <div className="App">
-      <h1>ToDO App with Story Book and propTypes</h1>
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
 
