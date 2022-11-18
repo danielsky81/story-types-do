@@ -1,15 +1,9 @@
-import PropTypes from 'prop-types';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-
-function Header(props) {
+const Header = () => {
   return (
-    <Container>
-      <Navbar expand="lg" className='d-flex justify-content-center'>ToDo App with Storybook | propTypes | Bootstrap</Navbar>
-    </Container>  
+    <nav className='d-flex justify-content-center mb-4'>
+      <h1 className='p-4'>ToDo App with Storybook | propTypes | Bootstrap</h1>
+    </nav>
   )
 };
 
-Header.propTypes = {}
-
-export default Header
+export default Header;
