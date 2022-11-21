@@ -11,7 +11,7 @@ const BootstrapModal = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <section className='d-flex justify-content-center'>
       <Button variant="primary" onClick={handleShow}>
         Add Task
       </Button>
@@ -26,7 +26,7 @@ const BootstrapModal = () => {
         <Modal.Footer>
         </Modal.Footer>
       </Modal>
-    </>
+    </section>
   )
 }
 
