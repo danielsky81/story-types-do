@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import Button from './Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from './Form';
 
@@ -12,9 +12,7 @@ const BootstrapModal = () => {
 
   return (
     <section className='d-flex justify-content-center'>
-      <Button variant="primary" onClick={handleShow}>
-        Add Task
-      </Button>
+    <Button classes='btn btn-primary' text='Add New Task' onClick={handleShow}/>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

@@ -1,17 +1,37 @@
 import React from 'react'
+import { useState } from 'react';
 // import PropTypes from 'prop-types'
 
 const Form = () => {
-  const addTask = () => {
-    console.log('form submitted')
+  const [newTask, setNewTask] = useState('');
+  const [taskInputIsValid, setTaskInputIsValid] = useState(true)
+
+  const addTask = event => {
+    setNewTask(event.target.value); 
   }
+
+  const formSubmission = event => {
+    event.preventDefault();
+
+    if (newTask.trim() === '') {
+      setTaskInputIsValid(false);
+      return
+    } 
+
+    setTaskInputIsValid(true);
+
+    console.log(newTask);
+    setNewTask('');
+  }
+
   return (
     <section className='container-fluid'>
-      <form onSubmit={addTask}>
+      <form onSubmit={formSubmission}>
         <div className="mb-3">
           <label htmlFor="task" className="form-label">Task to do</label>
-          <input type="text" className="form-control" id="task" aria-describedby="Describe task" />
+          <input type="text" className="form-control" id="task" aria-describedby="Describe task" onChange={addTask} value={newTask}/>
         </div>
+        {!taskInputIsValid && <p className='alert alert-warning' role='alert'>Task field can't be empty</p>}
         <div className="mb-3">
         <select className="form-select" aria-label="Importance label selection">
           <option value="selected">Select Importance</option>
@@ -26,6 +46,8 @@ const Form = () => {
   )
 }
 
-// Form.propTypes = {}
+Form.propTypes = {
+
+}
 
 export default Form
