@@ -3,7 +3,6 @@ const tasks = [
   { id: 2, name: 'Buy new heater', importance: 'Prioroty', status: 'Open'},
   { id: 3, name: 'Return Jumper', importance: 'Can wait', status: 'Open'},
   { id: 4, name: 'Pay for Car Insurance', importance: 'Prioroty', status: 'Close'},
-  // { id: 5, name: '', importance: '', status: 'Close'}
 ];
 
 export default tasks;
