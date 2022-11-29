@@ -1,53 +1,61 @@
 import React from 'react'
 import { useState } from 'react';
+import Button from './Button';
 // import PropTypes from 'prop-types'
 
-const Form = () => {
+const Form = ({onAdd}) => {
   const [newTask, setNewTask] = useState('');
-  const [taskInputIsValid, setTaskInputIsValid] = useState(true)
+  const [importance, setImportance] = useState('')
 
-  const addTask = event => {
-    setNewTask(event.target.value); 
+  const addTaskName = event => {
+    setNewTask(event.target.value);
+  }
+
+  const addTaskImportance = event => {
+    setImportance(event.target.value)
   }
 
   const formSubmission = event => {
+    
     event.preventDefault();
 
-    if (newTask.trim() === '') {
-      setTaskInputIsValid(false);
+    if (!newTask || !importance) {
+      alert('Please provide a task name or select importance');
       return
-    } 
+    }
 
-    setTaskInputIsValid(true);
+    const name = newTask;
+    onAdd({name, importance});
 
-    console.log(newTask);
     setNewTask('');
+    setImportance('');
   }
 
   return (
     <section className='container-fluid'>
-      <form onSubmit={formSubmission}>
+      <form className='needs-validation' noValidate onSubmit={formSubmission}>
         <div className="mb-3">
           <label htmlFor="task" className="form-label">Task to do</label>
-          <input type="text" className="form-control" id="task" aria-describedby="Describe task" onChange={addTask} value={newTask}/>
+          <input type="text" className="form-control" id="task" aria-describedby="Describe task" required onChange={addTaskName} value={newTask}/>
+          <div className="invalid-feedback">Please provide a task name</div>
+          <div className="valid-feedback">Looks good!</div>
         </div>
-        {!taskInputIsValid && <p className='alert alert-warning' role='alert'>Task field can't be empty</p>}
         <div className="mb-3">
-        <select className="form-select" aria-label="Importance label selection">
+        <select className="form-select" aria-label="Importance label selection" value={importance} onChange={addTaskImportance}>
           <option value="selected">Select Importance</option>
-          <option value="1">Prioroty</option>
-          <option value="2">To be done soon</option>
-          <option value="3">Can wait</option>
+          <option value="Prioroty">Prioroty</option>
+          <option value="To be done soon">To be done soon</option>
+          <option value="Can wait">Can wait</option>
         </select>
         </div>
-        <button type="submit" className="btn btn-primary">Add Task</button>
+        <Button classes='btn btn-primary' text='Add Task' onClick={formSubmission}/>
       </form>
     </section>
   )
 }
 
-Form.propTypes = {
-
-}
+// Form.propTypes = {
+//   newTask: PropTypes.string.isRequired
+// }
 
 export default Form

@@ -4,7 +4,7 @@ import Button from './Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from './Form';
 
-const BootstrapModal = () => {
+const BootstrapModal = ({onAdd}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,7 +19,7 @@ const BootstrapModal = () => {
           <Modal.Title>Add new Task to the list</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form />
+          <Form onAdd={onAdd}/>
         </Modal.Body>
         <Modal.Footer>
         </Modal.Footer>

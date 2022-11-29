@@ -11,11 +11,20 @@ function App() {
     setTasksList(tasksList.filter(task => task.id !== id))
   }
 
+  const addTask = task => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newTask = {id, ...task};
+    console.log(newTask);
+    setTasksList([...tasksList, newTask]);
+  }
+
   return (
     <>
       <Header />
-      <BootstrapModal />
-      <Tasks tasks={tasksList} onComplete={deleteTask}/>
+      <BootstrapModal onAdd={addTask}/>
+      {tasksList.length > 0 ? (
+        <Tasks tasks={tasksList} onComplete={deleteTask}/>
+      ) : (<p className="d-flex justify-content-center mt-4">All tasks completed. Please add a new one.</p>)}
     </>
   );
 }
